@@ -64,55 +64,12 @@
             background-clip: text;
             color: transparent;
         }
-        /* Timeline Styles (Retained for visual effect, but non-functional for this content) */
-        #timeline-container {
-            position: relative;
-            height: 50px;
-            display: flex;
-            align-items: center;
-        }
-        #timeline-bar {
-            width: 100%;
-            height: 4px;
-            background-color: #334155; /* slate-700 */
-            position: absolute;
-        }
-        .timeline-point {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            transition: transform 0.2s ease;
-        }
-        .timeline-point:hover {
-            transform: scale(1.5);
-        }
-        #playhead {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: #fff;
-            border: 4px solid #94A3B8; /* slate-400 */
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            cursor: grab;
-            z-index: 20;
-            box-shadow: 0 0 15px rgba(148, 163, 184, 0.5);
-        }
-        #playhead:active {
-            cursor: grabbing;
-        }
         .stipulation-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             flex-shrink: 0;
             margin-right: 0.75rem;
-        }
-        #timeline-title-box {
-            cursor: pointer;
         }
     </style>
 </head>
@@ -153,15 +110,14 @@
     
     <div class="max-w-7xl mx-auto">
         <header class="text-center pt-16 pb-12 px-4 sm:px-8 header-bg rounded-b-3xl mb-12">
-            <h1 class="text-7xl lg:text-8xl font-black title-gradient tracking-tighter mb-4">The Digital Toolkit Decomposition</h1>
-            <p class="text-3xl lg:text-4xl text-slate-300 max-w-4xl mx-auto">Every Factor Relevant to Digital Art Tools</p>
+            <h1 class="text-7xl lg:text-8xl font-black title-gradient tracking-tighter mb-4">The Digital Artist's Toolkit: A Deep Dive</h1>
+            <p class="text-3xl lg:text-4xl text-slate-300 max-w-4xl mx-auto">Every Factor Relevant to Choosing Digital Art Tools</p>
             <p class="text-lg text-slate-400 mt-8 max-w-3xl mx-auto font-semibold leading-relaxed">
-                Choosing the right tool isn't about finding the most popular software; it's about matching your specific artistic goals and budget to a precise set of features. This breakdown organizes all critical factors into three essential categories: the **Hardware** (The Body), the **Software** (The Brain), and the **Ecosystem** (The Environment).
-                <br><br>The timeline below is non-sequential and simply serves as a navigation element. Click on any step to jump to its corresponding factor below.
+                Selecting the correct digital art tool is a strategic decision. It's not about the most expensive or popular software, but about matching your specific artistic **goals**, **style**, and **budget** to a precise set of features. This decomposition organizes all critical factors into three essential pillars: the <b>Hardware</b> (The Body), the <b>Software</b> (The Brain), and the <b>Ecosystem</b> (The Environment).
             </p>
             <div class="mt-8 text-center">
                 <p class="text-2xl italic font-semibold text-slate-300 border-t border-b border-slate-700 py-4 max-w-md mx-auto">
-                    "The right tool for the job is often the one you already understand."
+                    "The best digital art tool is the one that disappears when you start drawing."
                 </p>
             </div>
             <div class="mt-12 pt-8 border-t border-slate-700 inline-block">
@@ -172,32 +128,6 @@
                 </div>
             </div>
         </header>
-        
-        <section class="max-w-5xl mx-auto mb-20 px-4 sm:px-8">
-            <div id="timeline-numbers" class="w-full flex justify-between items-center text-xl font-bold mb-2 text-white">
-                <span class="w-[calc(100%/11)] text-center">1</span>
-                <span class="w-[calc(100%/11)] text-center">2</span>
-                <span class="w-[calc(100%/11)] text-center">3</span>
-                <span class="w-[calc(100%/11)] text-center">4</span>
-                <span class="w-[calc(100%/11)] text-center">5</span>
-                <span class="w-[calc(100%/11)] text-center">6</span>
-                <span class="w-[calc(100%/11)] text-center">7</span>
-                <span class="w-[calc(100%/11)] text-center">8</span>
-                <span class="w-[calc(100%/11)] text-center">9</span>
-                <span class="w-[calc(100%/11)] text-center">10</span>
-                <span class="w-[calc(100%/11)] text-center">11</span>
-            </div>
-            <div id="timeline-container" class="w-full">
-                <div id="timeline-bar"></div>
-                <div id="timeline-points-container" class="w-full flex justify-between items-center absolute">
-                    </div>
-                <div id="playhead"></div>
-            </div>
-            <div id="timeline-display" class="mt-8 text-center p-6 bg-slate-800/50 rounded-lg shadow-lg min-h-[120px] flex flex-col items-center justify-center">
-                 <div id="timeline-title-box" class="inline-block px-6 py-2 rounded-lg mb-3 transition-colors duration-300" onclick="scrollToCurrentStep()"><h3 id="timeline-title" class="text-3xl font-bold"></h3></div>
-                <p id="timeline-objective" class="text-lg text-slate-300"></p>
-            </div>
-        </section>
         
         <main class="max-w-5xl mx-auto p-4 sm:p-0">
             
@@ -228,8 +158,7 @@
     <div class="h-48"></div>
 
     <script>
-        // --- TOOL DATA REPLACEMENT ---
-        // Replaced the process steps with Digital Art Tool factors
+        // --- TOOL DATA ---
         const stepData = [
             { id: 1, title: "Pen Sensitivity & Latency", color: "#4ade80", colorClass: "green", objective: "Pressure levels and the delay between stroke and appearance are paramount to a natural drawing feel." },
             { id: 2, title: "Display Quality & Size", color: "#4ade80", colorClass: "green", objective: "Color accuracy, resolution, and screen size directly impact comfort and professional color management." },
@@ -246,8 +175,7 @@
             { id: 11, title: "Community & Learning Resources", color: "#4ade80", colorClass: "green", objective: "The size of the user base determines the availability of tutorials, third-party assets, and troubleshooting help." }
         ];
 
-        // --- CONTENT REPLACEMENT ---
-        // Replaced the process content with detailed tool factors
+        // --- CONTENT REPLACEMENT (Asterisks fixed) ---
         const stepContentHTML = {
             1: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Description:</span> This is perhaps the single most critical factor for a good digital drawing experience. Pressure sensitivity (measured in levels, e.g., 8192) dictates how line thickness and opacity respond to pen force. Latency is the delay between your hand movement and the line appearing on screen; low latency is essential for feeling connected to the canvas.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Pressure Levels:</span> A minimum of 4096 levels is generally acceptable, but 8192 is the industry standard for professional control over line weight.</p></div><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Tilt Recognition:</span> Allows the pen to simulate broad strokes, like shading with the side of a pencil or using a flat brush, adding realism to the drawing process.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Philosophical Reminder:</span> Lag kills confidence. If your line is slow, your stroke will be slow and hesitant. The best tool disappears—you should only be focused on the art, not the hardware's response time.</p></div></div>`,
             2: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Description:</span> The screen is your window into the art. High color gamut coverage (e.g., 100% sRGB or DCI-P3) is required for color accuracy. Screen size dictates the workspace and the comfort level for arm movement. Parallax (the gap between the pen tip and the cursor) should be minimized.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Color Gamut:</span> Professional work destined for print or high-end web display requires a wide color gamut (like P3) to ensure colors are true across devices.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">High Resolution/DPI:</span> A high pixel density allows for extremely fine detail work and prevents pixelation when zoomed in, which is crucial for intricate line work and texture.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Surface Finish:</span> Glossy screens are bright but reflective. Matte/etched glass simulates the friction of paper, providing better control and comfort, which is a highly subjective choice.</p></div></div>`,
@@ -255,7 +183,7 @@
             4: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Description:</span> This addresses how and where you work. Portability dictates if you use a high-end desktop workstation (Wacom Cintiq Pro) or a highly mobile tablet (iPad Pro). Ergonomics include the pen grip, button placement, and accessory options like external keypads or drawing gloves.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Weight and Size:</span> For artists working away from a desk, the weight and physical dimensions of the device are key factors in sustained use and comfort.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Shortcut Keys:</span> Built-in express keys or customizable docks dramatically speed up workflow by removing the reliance on a keyboard.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Workflow Matching:</span> An artist who primarily sketches in coffee shops should prioritize a highly portable, all-in-one device over a powerful but stationary desktop setup.</p></div></div>`,
             
             5: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Description:</span> The brush engine is the heart of the software. It simulates how physical media behaves—how paint mixes (e.g., Rebelle), how thick impasto layers are applied (e.g., Corel Painter), and the texture a brush leaves behind. Good software offers deep customization and realism.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Brush Categories:</span> Look for a wide variety of tools, including basic airbrushes, hard-edged pencils, and complex texture brushes right out of the box.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Brush Customization:</span> The ability to adjust parameters like texture, dual brushes, scattering, and response to pressure/tilt is what separates pro-level software from basic tools.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Artistic Style:</span> If your goal is traditional simulation, Corel Painter or Rebelle will likely surpass the brush realism of all-purpose tools like Photoshop or Procreate.</p></div></div>`,
-            6: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Description:</span> Layers are fundamental to digital art, allowing non-destructive editing. Masks (layer and clipping) let you hide or reveal parts of a layer without erasing anything, and adjustment layers let you change color/value of a composition *non-destructively*.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Blend Modes:</span> The number and quality of blend modes (e.g., Multiply, Screen, Overlay) are essential for lighting, color correction, and shadow application.</p></div><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Selection Tools:</span> High-quality, fast tools for isolating areas (Lasso, Magic Wand, Marquee, quick selection) dramatically improve the speed of coloring and rendering.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Layer Organization:</span> Features like layer groups, tags, and color-coding are vital for managing large, complex files with hundreds of layers.</p></div></div>`,
+            6: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Description:</span> Layers are fundamental to digital art, allowing non-destructive editing. Masks (layer and clipping) let you hide or reveal parts of a layer without erasing anything, and adjustment layers let you change color/value of a composition <i>non-destructively</i>.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Blend Modes:</span> The number and quality of blend modes (e.g., Multiply, Screen, Overlay) are essential for lighting, color correction, and shadow application.</p></div><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Selection Tools:</span> High-quality, fast tools for isolating areas (Lasso, Magic Wand, Marquee, quick selection) dramatically improve the speed of coloring and rendering.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Layer Organization:</span> Features like layer groups, tags, and color-coding are vital for managing large, complex files with hundreds of layers.</p></div></div>`,
             7: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Description:</span> Different art forms require different core toolsets. Vector art (logos, scalable illustrations) demands Bézier curves and path manipulation (e.g., Adobe Illustrator). Comic/Manga art requires perspective rulers, speech bubble tools, and panel layouts (e.g., Clip Studio Paint). 3D art requires sculpting and rendering engines (e.g., Blender).</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Rulers and Guides:</span> Advanced perspective rulers (like in Clip Studio Paint) save hours of manual setup for accurate backgrounds and environments.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Generative AI:</span> Emerging tools integrate AI for generating textures, background elements, or concept ideas, which can accelerate the ideation and polishing stages.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Workflow Fit:</span> Avoid trying to force generalist software (like Photoshop) to do specialized tasks (like vector illustration) if a dedicated program offers superior tools.</p></div></div>`,
             8: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Description:</span> Professional work often involves file transfers between artists, clients, and printers. The ability to import and export industry-standard formats like PSD (with layers intact) is non-negotiable for collaborative workflows. Support for specific color profiles (CMYK for print) is also critical.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Layer Fidelity:</span> Can the software preserve layer groups, blend modes, and text layers when exporting a PSD file for use in another program?</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Vector vs. Raster Export:</span> The ability to output clean, resolution-independent SVG files from vector art is crucial for web and logo design.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Future-Proofing:</span> Choosing software that uses common, open formats protects your work from being locked into a proprietary file type that may become unusable later.</p></div></div>`,
             
@@ -266,8 +194,6 @@
 
         const stepColorClasses = { green: 'text-green-400', yellow: 'text-yellow-400', red: 'text-red-400' };
         const stepBgClasses = { green: 'bg-green-400/20', yellow: 'bg-yellow-400/20', red: 'bg-red-400/20' };
-
-        let currentStep = 0;
 
         // --- UTILITY FUNCTIONS ---
         function toggleMobileMenu() {
@@ -282,6 +208,7 @@
             const allContent = document.querySelectorAll('.step-content.open');
             const allHeaders = document.querySelectorAll('.step-header.open');
 
+            // Close other open steps
             allContent.forEach(openContent => {
                 if (openContent !== content) {
                     openContent.classList.remove('open');
@@ -292,29 +219,14 @@
                     openHeader.classList.remove('open');
                 }
             });
+            
+            // Toggle the clicked step
             content.classList.toggle('open');
             header.classList.toggle('open');
         }
 
-        function scrollToCurrentStep() {
-            const targetId = `step-${currentStep + 1}`;
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                const yOffset = -80;
-                const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                window.scrollTo({top: y, behavior: 'smooth'});
-                
-                const header = targetElement.querySelector('.step-header');
-                const content = header.nextElementSibling;
-                if (header && content && !content.classList.contains('open')) {
-                   setTimeout(() => toggleStep(header), 400); 
-                }
-            }
-        }
-
-
-        // --- TIMELINE/CONTENT INITIALIZATION LOGIC ---
-        function initializeProcessTimeline() {
+        // --- CONTENT INITIALIZATION LOGIC ---
+        function initializeContent() {
             const phase1Content = document.getElementById('phase-1-content');
             const phase2Content = document.getElementById('phase-2-content');
             const phase3Content = document.getElementById('phase-3-content');
@@ -348,132 +260,9 @@
                     container.appendChild(stepEl);
                 }
             }
-
-
-            const timelineContainer = document.getElementById('timeline-container');
-            const pointsContainer = document.getElementById('timeline-points-container');
-            const timelineTitle = document.getElementById('timeline-title');
-            const timelineTitleBox = document.getElementById('timeline-title-box');
-            const timelineObjective = document.getElementById('timeline-objective');
-            const playhead = document.getElementById('playhead');
-            
-            // Clear and re-populate points container
-            pointsContainer.innerHTML = '';
-            
-            let points = [];
-            
-            // Create points
-            for (let i = 0; i < 11; i++) {
-                const step = stepData[i];
-                const point = document.createElement('div');
-                point.className = 'timeline-point';
-                point.style.backgroundColor = step.color;
-                point.dataset.index = i;
-                pointsContainer.appendChild(point);
-                points.push(point);
-            }
-
-            let isDragging = false;
-
-            function updateDisplay(index) {
-                currentStep = index;
-                const data = stepData[index];
-                if (timelineTitle) timelineTitle.textContent = data.title;
-                if (timelineObjective) timelineObjective.textContent = data.objective;
-                if (timelineTitle) timelineTitle.className = `text-3xl font-bold ${stepColorClasses[data.colorClass]}`;
-                if (timelineTitleBox) timelineTitleBox.className = `inline-block px-6 py-2 rounded-lg mb-3 transition-colors duration-300 ${stepBgClasses[data.colorClass]}`;
-            }
-
-            function snapPlayhead(xPosition) {
-                if(!timelineContainer || !playhead) return;
-                const containerRect = timelineContainer.getBoundingClientRect();
-                const relativeX = xPosition - containerRect.left;
-                let closestPointIndex = 0;
-                let minDistance = Infinity;
-                
-                points = Array.from(pointsContainer.children);
-
-                points.forEach((point, index) => {
-                    const pointRect = point.getBoundingClientRect();
-                    if (pointRect.width === 0) return; 
-
-                    const pointCenter = pointRect.left - containerRect.left + (pointRect.width / 2);
-                    const distance = Math.abs(relativeX - pointCenter);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        closestPointIndex = index;
-                    }
-                });
-                const closestPoint = points[closestPointIndex];
-                const closestPointRect = closestPoint.getBoundingClientRect();
-                const newLeft = closestPointRect.left - containerRect.left + (closestPointRect.width / 2);
-                playhead.style.left = `${newLeft}px`;
-                updateDisplay(closestPointIndex);
-            }
-            
-            // Event Listeners for Dragging
-            if (playhead) {
-                playhead.addEventListener('mousedown', (e) => { isDragging = true; playhead.style.transition = 'none'; e.preventDefault(); });
-                playhead.addEventListener('touchstart', (e) => { isDragging = true; playhead.style.transition = 'none'; }, { passive: true });
-            }
-
-            window.addEventListener('mousemove', (e) => {
-                if (isDragging && timelineContainer && playhead) {
-                    const containerRect = timelineContainer.getBoundingClientRect();
-                    let newX = e.clientX - containerRect.left;
-                    newX = Math.max(0, Math.min(newX, containerRect.width));
-                    playhead.style.left = `${newX}px`;
-                }
-            });
-
-             window.addEventListener('touchmove', (e) => {
-                if (isDragging && timelineContainer && playhead) {
-                    const containerRect = timelineContainer.getBoundingClientRect();
-                    let newX = e.touches[0].clientX - containerRect.left;
-                    newX = Math.max(0, Math.min(newX, containerRect.width));
-                    playhead.style.left = `${newX}px`;
-                }
-            }, { passive: true });
-
-            const endDrag = (e) => {
-                if (isDragging && timelineContainer) {
-                    isDragging = false;
-                    playhead.style.transition = 'left 0.2s ease-out';
-                    const finalX = e.clientX || (e.changedTouches && e.changedTouches[0].clientX);
-                    if(finalX) {
-                        snapPlayhead(finalX);
-                    } else {
-                        const playheadRect = playhead.getBoundingClientRect();
-                        snapPlayhead(playheadRect.left + playheadRect.width/2);
-                    }
-                }
-            };
-
-            window.addEventListener('mouseup', endDrag);
-            window.addEventListener('touchend', endDrag);
-            
-            // Point click listener
-            points.forEach(point => {
-                point.addEventListener('click', (e) => {
-                    const index = parseInt(e.target.dataset.index);
-                    const pointRect = e.target.getBoundingClientRect();
-                    snapPlayhead(pointRect.left + pointRect.width/2);
-                    updateDisplay(index);
-                    scrollToCurrentStep();
-                });
-            });
-
-            // Initial setup
-            // Wait for points to render and have dimensions
-            setTimeout(() => {
-                if(points.length > 0) {
-                    snapPlayhead(points[0].getBoundingClientRect().left + points[0].getBoundingClientRect().width / 2);
-                    updateDisplay(0); 
-                }
-            }, 100);
         }
 
-        window.addEventListener('DOMContentLoaded', initializeProcessTimeline);
+        window.addEventListener('DOMContentLoaded', initializeContent);
     </script>
 </body>
 </html>
