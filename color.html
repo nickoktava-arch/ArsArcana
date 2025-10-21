@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Color Fundamentals | ArsArcana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /*
+        The following CSS is copied from style.css to ensure the page renders correctly
+        without an external stylesheet, maintaining the design of lineart.html.
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #0F172A; /* slate-900 */
+        }
+        .phase-divider {
+            border-color: #475569; /* slate-600 */
+        }
+        .step-header {
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            background-color: #1E293B; /* slate-800 */
+            border: 1px solid #1E293B;
+        }
+        .step-header:hover {
+            background-color: #334155; /* slate-700 */
+        }
+        /* Style for the step content accordion effect */
+        .step-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            background-color: #1E293B; /* slate-800 */
+            border-left: 1px solid #1E293B;
+            border-right: 1px solid #1E293B;
+            border-bottom: 1px solid #1E293B;
+        }
+        .step-content.open {
+            max-height: 2000px;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+        /* Visual indicator for an open step */
+        .step-header.open {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        /* Arrow rotation */
+        .arrow {
+            transition: transform 0.3s ease-in-out;
+        }
+        .open .arrow {
+            transform: rotate(90deg);
+        }
+        .header-bg {
+            background-image: radial-gradient(ellipse at top, #1e293b, #0f172a 70%);
+        }
+        .title-gradient {
+            background-image: linear-gradient(to right, #f87171, #facc15, #4ade80, #38bdf8, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stipulation-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-right: 0.75rem;
+        }
+    </style>
+</head>
+<body class="text-slate-200 pt-16">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-sm border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-bold text-xl title-gradient">ArsArcana</a>
+                </div>
+
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="index.html" class="text-slate-300 hover:bg-slate-700 hover:text-white px-4 py-2 rounded-lg text-lg font-semibold">Home</a>
+                    </div>
+                    
+                    <div class="md:hidden">
+                        <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white focus:outline-none p-2">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+         <div id="mobile-menu" class="md:hidden hidden bg-slate-900/95">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-slate-300 hover:bg-slate-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#" class="text-slate-500 opacity-60 pointer-events-none block px-3 py-2 rounded-md text-base font-medium">Other Categories (UNAVAILABLE)</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center pt-16 pb-12 px-4 sm:px-8 header-bg rounded-b-3xl mb-12">
+            <h1 class="text-7xl lg:text-8xl font-black title-gradient tracking-tighter mb-4">Color Fundamentals: Theory & Application</h1>
+            <p class="text-3xl lg:text-4xl text-slate-300 max-w-4xl mx-auto">Hue, Saturation, Value, and the Physics of Light</p>
+            <p class="text-lg text-slate-400 mt-8 max-w-3xl mx-auto font-semibold leading-relaxed">
+                Color is the language of mood and atmosphere. Mastering it begins with understanding the three physical dimensions of any color—<strong>Hue</strong>, <strong>Saturation</strong>, and <strong>Value</strong>—and learning to use a <strong>Color Harmony</strong> to achieve a deliberate emotional effect.
+            </p>
+            <div class="mt-8 text-center">
+                <p class="text-2xl italic font-semibold text-slate-300 border-t border-b border-slate-700 py-4 max-w-md mx-auto">
+                    "Light is a constant. Color is the filter that tells the story."
+                </p>
+            </div>
+            <div class="mt-4 text-center">
+                <p class="text-sm text-slate-500 max-w-md mx-auto">
+                    <span class="font-bold">Note:</span> The initial content of this page was generated by Google Gemini and verified by <span class="text-slate-400 font-semibold">@TZARSZ</span>. The content is subject to change as <span class="text-slate-400 font-semibold">@TZARSZ</span> becomes more involved in the editing process.
+                </p>
+            </div>
+            <div class="mt-12 pt-8 border-t border-slate-700 inline-block">
+                <div class="flex flex-col sm:flex-row justify-center items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-10 text-left">
+                    <div class="flex items-center"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-green-400 mr-3 shadow-md shadow-green-400/20"></span><div><p class="font-bold text-green-400">Green Stipulations (Core Concepts)</p><p class="text-sm text-slate-400">Focus on the fundamental definitions of color and light.</p></div></div>
+                    <div class="flex items-center"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-yellow-400 mr-3 shadow-md shadow-yellow-400/20"></span><div><p class="font-bold text-yellow-400">Yellow Stipulations (Application & Harmony)</p><p class="text-sm text-slate-400">Focus on how to select and combine colors in a pleasing way.</p></div></div>
+                    <div class="flex items-center"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-red-400 mr-3 shadow-md shadow-red-400/20"></span><div><p class="font-bold text-red-400">Red Stipulations (Visual Effects & Context)</p><p class="text-sm text-slate-400">Focus on advanced techniques for realism and emotional impact.</p></div></div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="max-w-5xl mx-auto p-4 sm:p-0">
+            
+            <section id="phase-1" class="mb-16">
+                <h2 class="text-4xl font-bold text-slate-200 border-b-2 phase-divider pb-3 mb-8">SECTION 1: THE H-S-V DIMENSIONS</h2>
+                <div class="space-y-6" id="phase-1-content">
+                    </div>
+            </section>
+            
+            <section id="phase-2" class="mb-16">
+                <h2 class="text-4xl font-bold text-slate-200 border-b-2 phase-divider pb-3 mb-8">SECTION 2: COLOR HARMONIES & PALETTES</h2>
+                <div class="space-y-6" id="phase-2-content">
+                    <p class="text-lg text-slate-400 italic mb-6">
+                        <span class="font-bold text-yellow-400">Note:</span> The harmonies listed below are fundamental starting points (templates) for choosing colors. There are many more schemes available, such as Monochromatic, Tetradic, and Split-Complementary, which offer varying degrees of contrast and complexity.
+                    </p>
+                    </div>
+            </section>
+            
+            <section id="phase-3">
+                <h2 class="text-4xl font-bold text-slate-200 border-b-2 phase-divider pb-3 mb-8">SECTION 3: LIGHT, DEPTH, & EMOTION</h2>
+                 <div class="space-y-6" id="phase-3-content">
+                    </div>
+            </section>
+        </main>
+    </div>
+    
+    <footer class="text-center py-10 border-t border-slate-700 mt-20">
+        <p class="text-slate-500 text-sm">Created by Google Gemini & @TZARSZ</p>
+    </footer>
+
+    <div class="h-48"></div>
+
+    <script>
+        // --- DATA (UPDATED FOR COLOR FUNDAMENTALS) ---
+        const stepData = [
+            // Section 1: HSV/HVC
+            { id: 1, title: "Value (Lightness)", color: "#4ade80", colorClass: "green", objective: "Understand the brightness or darkness of a color, which is the foundation of light and form." },
+            { id: 2, title: "Hue (Pure Color)", color: "#4ade80", colorClass: "green", objective: "Understand the pure spectral name of the color (Red, Green, Blue, etc.)." },
+            { id: 3, title: "Saturation (Chroma)", color: "#4ade80", colorClass: "green", objective: "Understand the intensity or purity of a color (vivid vs. dull/grayish)." },
+
+            // Section 2: Color Harmony
+            { id: 4, title: "The Color Wheel", color: "#facc15", colorClass: "yellow", objective: "Learn the structure of the RGB wheel and the primary relationships between colors." },
+            { id: 5, title: "Complementary Harmony", color: "#facc15", colorClass: "yellow", objective: "Use colors opposite on the wheel to achieve maximum visual contrast and pop." },
+            { id: 6, title: "Analogous & Triadic Harmony", color: "#facc15", colorClass: "yellow", objective: "Use colors next to each other (analogous) or evenly spaced (triadic) for different effects." },
+
+            // Section 3: Atmosphere & Mood
+            { id: 7, title: "Value Contrast", color: "#f87171", colorClass: "red", objective: "Control the viewer's focus by maximizing light/dark contrast at the focal point." },
+            { id: 8, title: "Warm vs. Cool Colors", color: "#f87171", colorClass: "red", objective: "Use color temperature to create depth, separation, and emotional response." },
+            { id: 9, title: "Atmospheric Perspective", color: "#f87171", colorClass: "red", objective: "Create the illusion of deep distance by changing the color of faraway objects." }
+        ];
+
+        // --- CONTENT REPLACEMENT (Corrected for HTML tags and Color Logic) ---
+        const stepContentHTML = {
+            1: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Understand the brightness or darkness of a color, which is the foundation of light and form. Value is easily the most important component of an image.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Definition:</span> <strong>Value</strong> (or lightness/brightness) is the degree of black or white mixed with a pure color. High value is close to white (a <strong>tint</strong>), and low value is close to black (a <strong>shade</strong>).</p></div><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">The Grayscale Test:</span> If you convert your artwork to grayscale, the visual structure should still be clear. If your values are 'off' (too similar), the art won't 'read' correctly.</p></div><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Contrast:</span> Greater contrast in value creates a stronger visual hierarchy and directs the viewer's eye.</p></div></div>`,
+            2: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Understand the pure spectral name of the color (Red, Green, Blue, etc.), which is the starting point for all color manipulation.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Definition:</span> <strong>Hue</strong> is the purest form of a color—the name we use to identify it, such as red, blue, or yellow. It is represented as a position on the color wheel.</p></div><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Manipulation:</span> In digital color pickers, the hue is typically the band of color you select before changing its saturation or value.</p></div><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Perception:</span> The hue we see depends on the wavelength of light being reflected or produced. Different colors can share the same hue, but different hues are not the same color.</p></div></div>`,
+            3: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Understand the intensity or purity of a color (vivid vs. dull/grayish), which directly impacts its visual impact.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Definition:</span> <strong>Saturation</strong> (also called chroma or intensity) refers to the vividness or richness of a color. A fully saturated color is the pure hue with no gray added.</p></div><div class="flex items-start"><span class="stipulation-dot bg-green-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Desaturation:</span> A completely desaturated color appears as a medium gray. Desaturating a color is achieved by adding gray or its complementary color.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Hierarchy:</span> Use the highest saturation levels for the <strong>focal point</strong> of your image, and lower the saturation for secondary and tertiary colors to create a sense of order.</p></div></div>`,
+
+            4: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Learn the structure of the RGB color wheel and the primary relationships between colors to choose effective color schemes.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">RGB for Digital:</span> In digital media, the most commonly used color wheel is <strong>RGB (Red, Green, Blue)</strong>, which uses the primary colors of light.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Primary/Secondary/Tertiary:</span> <strong>Primary</strong> colors cannot be mixed (R, G, B for light). <strong>Secondary</strong> colors are a mix of two primaries (e.g., Yellow, Cyan, Magenta). <strong>Tertiary</strong> colors are a mix of a primary and a secondary.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Color Harmony:</span> A <strong>Color Harmony</strong> is a group of colors that work together to create a pleasing look, evoke a feeling, or guide attention.</p></div></div>`,
+            5: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Use colors opposite on the wheel to achieve maximum visual contrast, creating a high-impact, vibrant effect.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Definition:</span> <strong>Complementary</strong> colors are two colors located directly opposite each other on the color wheel (e.g., Red and Green, Blue and Orange).</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Mixing Effect:</span> Mixing two complementary colors (pigments) results in a neutral, gray, or muddy color.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Contrast Effect:</span> Placing complementary colors next to each other increases their contrast, making both colors appear brighter and more prominent.</p></div></div>`,
+            6: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Use colors next to each other (analogous) or evenly spaced (triadic) to create balanced or vibrant palettes, respectively.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Analogous Harmony:</span> Uses three colors that are side by side on the color wheel (e.g., Yellow-Green, Yellow, Yellow-Orange). This creates a subtle, harmonious, and conservative look.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Triadic Harmony:</span> Uses three colors that are evenly spaced around the color wheel. This scheme is less contrasting than complementary but produces bold, vibrant color palettes.</p></div><div class="flex items-start"><span class="stipulation-dot bg-yellow-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Split-Complementary:</span> Uses a base color, and the two colors adjacent to its complement. This offers a pop of color with more balance than a simple complementary scheme.</p></div></div>`,
+
+            7: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Control the viewer's focus by maximizing light/dark contrast at the focal point and lowering it elsewhere, as this is the most important element for contrast.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Focal Point Priority:</span> The <strong>highest value contrast</strong> (lightest light against darkest dark) in your entire piece should be located precisely at your center of interest.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Contrast Types:</span> You can achieve contrast by juxtaposing light and dark elements (value), saturated and unsaturated colors (saturation/chroma), or colors opposite on the wheel (hue/temperature).</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Relativity:</span> The perceived value, hue, or saturation of a color is always affected by the colors placed next to it.</p></div></div>`,
+            8: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Use color temperature (warm/cool) to create depth, separation, and emotional response, as this is a powerful visual tool.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Warm Colors:</span> <strong>Red, Orange, and Yellow</strong> evoke feelings of energy, passion, excitement, and warmth. They tend to visually <strong>advance</strong> into the foreground of a composition.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Cool Colors:</span> <strong>Blue, Green, and Purple/Violet</strong> evoke calmness, serenity, and stability. They tend to visually <strong>recede</strong> into the background.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Color Psychology:</span> Choosing a dominant color based on its psychological associations (e.g., Blue for trust/stability, Red for energy/danger) can significantly enhance the artwork's story and mood.</p></div></div>`,
+            9: `<p class="text-slate-200 mb-6"><span class="text-2xl font-bold text-slate-300">Objective:</span> Create the illusion of deep distance in a scene by changing the value, saturation, and hue of faraway objects, known as <strong>aerial perspective</strong>.</p><div class="space-y-4"><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Effects on Color:</span> As objects recede into the distance, their colors become <strong>less saturated</strong> (more grayish), <strong>lighter in value</strong>, and their hue shifts towards the color of the atmosphere (usually <strong>cooler and bluer</strong> due to light scattering).</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Contrast Recession:</span> In addition to color changes, the value and detail <strong>contrast</strong> of distant objects decreases. This is essential for creating a realistic sense of layered depth.</p></div><div class="flex items-start"><span class="stipulation-dot bg-red-400 mt-2"></span><p><span class="text-xl font-semibold text-slate-400">Digital Technique:</span> To simulate this effect, apply a light, semi-transparent layer of a muted blue-gray color over your background elements and use soft brushes or low saturation settings.</p></div></div>`
+        };
+
+        const stepColorClasses = { green: 'text-green-400', yellow: 'text-yellow-400', red: 'text-red-400' };
+        const stepBgClasses = { green: 'bg-green-400/20', yellow: 'bg-yellow-400/20', red: 'bg-red-400/20' };
+
+        // --- UTILITY FUNCTIONS ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+
+        function toggleStep(header) {
+            const content = header.nextElementSibling;
+            const allContent = document.querySelectorAll('.step-content.open');
+            const allHeaders = document.querySelectorAll('.step-header.open');
+
+            // Close other open steps
+            allContent.forEach(openContent => {
+                if (openContent !== content) {
+                    openContent.classList.remove('open');
+                }
+            });
+            allHeaders.forEach(openHeader => {
+                 if (openHeader !== header) {
+                    openHeader.classList.remove('open');
+                }
+            });
+            
+            // Toggle the clicked step
+            content.classList.toggle('open');
+            header.classList.toggle('open');
+        }
+
+        // --- CONTENT INITIALIZATION LOGIC ---
+        function initializeContent() {
+            const phase1Content = document.getElementById('phase-1-content');
+            const phase2Content = document.getElementById('phase-2-content');
+            const phase3Content = document.getElementById('phase-3-content');
+            
+            if (!phase1Content) return; 
+
+            // Inject step content dynamically
+            for(let i=1; i<=stepData.length; i++){
+                const step = stepData[i-1];
+                let container = null;
+                if (i <= 3) container = phase1Content; // The Three Dimensions of Color
+                else if (i <= 6) container = phase2Content; // Color Harmony & Contrast Principles
+                else container = phase3Content; // Color as Atmosphere & Mood
+
+                if (container) {
+                    const stepEl = document.createElement('div');
+                    stepEl.id = `step-${i}`;
+                    stepEl.className = 'rounded-lg shadow-lg';
+                    stepEl.innerHTML = `
+                        <div class="step-header flex justify-between items-center p-6 rounded-lg" onclick="toggleStep(this)">
+                            <div class="flex items-center">
+                                <span class="text-5xl font-extrabold ${stepColorClasses[step.colorClass]} mr-6">${i}</span>
+                                <h3 class="text-3xl font-bold text-white">${step.title}</h3>
+                            </div>
+                            <div class="arrow text-slate-400 text-3xl">▶</div>
+                        </div>
+                        <div class="step-content px-6 rounded-b-lg text-lg">
+                            ${stepContentHTML[i]}
+                        </div>
+                    `;
+                    container.appendChild(stepEl);
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', initializeContent);
+    </script>
+</body>
+</html>
