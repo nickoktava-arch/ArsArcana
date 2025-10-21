@@ -252,20 +252,5 @@
     <div class="h-48"></div>
 
     <script src="script.js"></script>
-    <script>
-        // Minimal JavaScript to enable the accordion functionality, imported from script.js
-        function toggleStep(header) {
-            const content = header.nextElementSibling;
-            const allContent = document.querySelectorAll('.step-content.open');
-            allContent.forEach(openContent => {
-                if (openContent !== content) {
-                    openContent.classList.remove('open');
-                    openContent.previousElementSibling.classList.remove('open');
-                }
-            });
-            content.classList.toggle('open');
-            header.classList.toggle('open');
-        }
-    </script>
 </body>
 </html>

@@ -31,9 +31,23 @@ const stepColorClasses = { green: 'text-green-400', yellow: 'text-yellow-400', r
 const stepBgClasses = { green: 'bg-green-400/20', yellow: 'bg-yellow-400/20', red: 'bg-red-400/20' };
 
 let currentStep = 0;
-let timelineInitialized = false;
 
-// --- ACCORDION ---
+// --- UTILITY FUNCTIONS (Made Global for HTML onClick) ---
+
+/**
+ * Toggles the mobile navigation menu visibility.
+ */
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) {
+        menu.classList.toggle('hidden');
+    }
+}
+
+/**
+ * Toggles the accordion step content visibility.
+ * @param {HTMLElement} header The step header element that was clicked.
+ */
 function toggleStep(header) {
     const content = header.nextElementSibling;
     const allContent = document.querySelectorAll('.step-content.open');
@@ -47,6 +61,9 @@ function toggleStep(header) {
     header.classList.toggle('open');
 }
 
+/**
+ * Scrolls to the currently selected step on the process page.
+ */
 function scrollToCurrentStep() {
     const targetId = `step-${currentStep + 1}`;
     const targetElement = document.getElementById(targetId);
@@ -54,15 +71,19 @@ function scrollToCurrentStep() {
         const yOffset = -80;
         const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({top: y, behavior: 'smooth'});
+        
+        // Open the accordion step if it's closed
         const header = targetElement.querySelector('.step-header');
         const content = header.nextElementSibling;
-        if (!content.classList.contains('open')) {
+        if (header && content && !content.classList.contains('open')) {
+           // Small delay to ensure smooth scroll finishes before opening
            setTimeout(() => toggleStep(header), 400); 
         }
     }
 }
 
-// --- TIMELINE ---
+
+// --- TIMELINE LOGIC (Only runs on process.html) ---
 function initializeProcessTimeline() {
     // Populate content for the Process page
     const phase1Content = document.getElementById('phase-1-content');
@@ -72,32 +93,36 @@ function initializeProcessTimeline() {
     // Check if the content is being loaded into the DOM (i.e. if we are on process.html)
     if (!phase1Content) return; 
 
-    for(let i=1; i<=11; i++){
-        const step = stepData[i-1];
-        let container = null;
-        if (i <= 3) container = phase1Content;
-        else if (i <= 8) container = phase2Content;
-        else container = phase3Content;
+    // Inject step content dynamically (to be safe against multiple initializations)
+    if(phase1Content.children.length === 0) {
+        for(let i=1; i<=11; i++){
+            const step = stepData[i-1];
+            let container = null;
+            if (i <= 3) container = phase1Content;
+            else if (i <= 8) container = phase2Content;
+            else container = phase3Content;
 
-        if (container && container.children.length < (i <= 3 ? 3 : (i <= 8 ? 5 : 3))) { // Simple check to prevent duplicate appending if called multiple times
-            const stepEl = document.createElement('div');
-            stepEl.id = `step-${i}`;
-            stepEl.className = 'rounded-lg shadow-lg';
-            stepEl.innerHTML = `
-                <div class="step-header flex justify-between items-center p-6 rounded-lg" onclick="toggleStep(this)">
-                    <div class="flex items-center">
-                        <span class="text-5xl font-extrabold ${stepColorClasses[step.colorClass]} mr-6">${i}</span>
-                        <h3 class="text-3xl font-bold text-white">${step.title}</h3>
+            if (container) {
+                const stepEl = document.createElement('div');
+                stepEl.id = `step-${i}`;
+                stepEl.className = 'rounded-lg shadow-lg';
+                stepEl.innerHTML = `
+                    <div class="step-header flex justify-between items-center p-6 rounded-lg" onclick="toggleStep(this)">
+                        <div class="flex items-center">
+                            <span class="text-5xl font-extrabold ${stepColorClasses[step.colorClass]} mr-6">${i}</span>
+                            <h3 class="text-3xl font-bold text-white">${step.title}</h3>
+                        </div>
+                        <div class="arrow text-slate-400 text-3xl">▶</div>
                     </div>
-                    <div class="arrow text-slate-400 text-3xl">▶</div>
-                </div>
-                <div class="step-content px-6 rounded-b-lg text-lg">
-                    ${stepContentHTML[i]}
-                </div>
-            `;
-            container.appendChild(stepEl);
+                    <div class="step-content px-6 rounded-b-lg text-lg">
+                        ${stepContentHTML[i]}
+                    </div>
+                `;
+                container.appendChild(stepEl);
+            }
         }
     }
+
 
     const timelineContainer = document.getElementById('timeline-container');
     const pointsContainer = document.getElementById('timeline-points-container');
@@ -107,10 +132,11 @@ function initializeProcessTimeline() {
     const timelineTitleBox = document.getElementById('timeline-title-box');
     const timelineObjective = document.getElementById('timeline-objective');
     
-    // Clear containers before populating (important for modular loading)
+    // Clear and re-populate containers if necessary
     if (pointsContainer && pointsContainer.children.length === 0) {
         let points = [];
         
+        // Create points and numbers
         for (let i = 0; i < 11; i++) {
             const step = stepData[i];
             const point = document.createElement('div');
@@ -119,6 +145,7 @@ function initializeProcessTimeline() {
             point.dataset.index = i;
             pointsContainer.appendChild(point);
             points.push(point);
+            
             const number = document.createElement('span');
             number.textContent = i + 1;
             number.className = 'w-[calc(100%/11)] text-center';
@@ -130,21 +157,24 @@ function initializeProcessTimeline() {
         function updateDisplay(index) {
             currentStep = index;
             const data = stepData[index];
-            timelineTitle.textContent = data.title;
-            timelineObjective.textContent = data.objective;
-            timelineTitle.className = `text-3xl font-bold ${stepColorClasses[data.colorClass]}`;
-            timelineTitleBox.className = `inline-block px-6 py-2 rounded-lg mb-3 transition-colors duration-300 ${stepBgClasses[data.colorClass]}`;
+            if (timelineTitle) timelineTitle.textContent = data.title;
+            if (timelineObjective) timelineObjective.textContent = data.objective;
+            if (timelineTitle) timelineTitle.className = `text-3xl font-bold ${stepColorClasses[data.colorClass]}`;
+            if (timelineTitleBox) timelineTitleBox.className = `inline-block px-6 py-2 rounded-lg mb-3 transition-colors duration-300 ${stepBgClasses[data.colorClass]}`;
         }
 
         function snapPlayhead(xPosition) {
-            if(!timelineContainer) return;
+            if(!timelineContainer || !playhead) return;
             const containerRect = timelineContainer.getBoundingClientRect();
             const relativeX = xPosition - containerRect.left;
             let closestPointIndex = 0;
             let minDistance = Infinity;
+            
+            // Recalculate positions based on fresh DOM state
+            points = Array.from(pointsContainer.children);
+
             points.forEach((point, index) => {
                 const pointRect = point.getBoundingClientRect();
-                // Check if rect is available (component might be hidden/off-screen)
                 if (pointRect.width === 0) return; 
 
                 const pointCenter = pointRect.left - containerRect.left + (pointRect.width / 2);
@@ -161,12 +191,14 @@ function initializeProcessTimeline() {
             updateDisplay(closestPointIndex);
         }
         
-        playhead.addEventListener('mousedown', (e) => { isDragging = true; playhead.style.transition = 'none'; });
-        playhead.addEventListener('touchstart', (e) => { isDragging = true; playhead.style.transition = 'none'; }, { passive: true });
+        // Event Listeners for Dragging
+        if (playhead) {
+            playhead.addEventListener('mousedown', (e) => { isDragging = true; playhead.style.transition = 'none'; e.preventDefault(); });
+            playhead.addEventListener('touchstart', (e) => { isDragging = true; playhead.style.transition = 'none'; }, { passive: true });
+        }
 
         window.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                if (!timelineContainer) return;
+            if (isDragging && timelineContainer && playhead) {
                 const containerRect = timelineContainer.getBoundingClientRect();
                 let newX = e.clientX - containerRect.left;
                 newX = Math.max(0, Math.min(newX, containerRect.width));
@@ -175,8 +207,7 @@ function initializeProcessTimeline() {
         });
 
          window.addEventListener('touchmove', (e) => {
-            if (isDragging) {
-                if (!timelineContainer) return;
+            if (isDragging && timelineContainer && playhead) {
                 const containerRect = timelineContainer.getBoundingClientRect();
                 let newX = e.touches[0].clientX - containerRect.left;
                 newX = Math.max(0, Math.min(newX, containerRect.width));
@@ -187,7 +218,7 @@ function initializeProcessTimeline() {
         window.addEventListener('mouseup', (e) => {
             if(isDragging) {
                 isDragging = false;
-                playhead.style.transition = 'left 0.2s ease-in-out';
+                if (playhead) playhead.style.transition = 'left 0.2s ease-in-out';
                 snapPlayhead(e.clientX);
             }
         });
@@ -195,51 +226,52 @@ function initializeProcessTimeline() {
          window.addEventListener('touchend', (e) => {
             if(isDragging) {
                 isDragging = false;
-                playhead.style.transition = 'left 0.2s ease-in-out';
+                if (playhead) playhead.style.transition = 'left 0.2s ease-in-out';
                 const lastTouch = e.changedTouches[0];
                 snapPlayhead(lastTouch.clientX);
             }
         });
 
+        // Event Listeners for Clicking on Points
         points.forEach(point => {
             point.addEventListener('click', () => {
                 const index = parseInt(point.dataset.index);
-                const containerRect = timelineContainer.getBoundingClientRect();
-                const pointRect = point.getBoundingClientRect();
-                const newLeft = pointRect.left - containerRect.left + (pointRect.width / 2);
-                playhead.style.transition = 'left 0.2s ease-in-out';
-                playhead.style.left = `${newLeft}px`;
+                if (timelineContainer && playhead) {
+                    const containerRect = timelineContainer.getBoundingClientRect();
+                    const pointRect = point.getBoundingClientRect();
+                    const newLeft = pointRect.left - containerRect.left + (pointRect.width / 2);
+                    playhead.style.transition = 'left 0.2s ease-in-out';
+                    playhead.style.left = `${newLeft}px`;
+                }
                 updateDisplay(index);
             });
         });
 
+        // Initial setup function
         function initialize() {
             const firstPoint = points[0];
-            if (!firstPoint || !timelineContainer) return;
+            if (!firstPoint || !timelineContainer || !playhead) return;
             const containerRect = timelineContainer.getBoundingClientRect();
-            if (containerRect.width > 0) {
+            // Check if the element has been fully rendered with dimensions
+            if (containerRect.width > 0 && firstPoint.getBoundingClientRect().width > 0) {
                 const firstPointRect = firstPoint.getBoundingClientRect();
                 const initialLeft = firstPointRect.left - containerRect.left + (firstPointRect.width / 2);
                 playhead.style.left = `${initialLeft}px`;
                 updateDisplay(0);
             } else {
+                // Retry initialization if dimensions are not ready
                 setTimeout(initialize, 50);
             }
         }
         
         initialize();
+        // Recalculate positions on window resize
         window.addEventListener('resize', initialize);
     }
 }
 
-// --- UTILITY FUNCTIONS ---
-
-function toggleMobileMenu() {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
-}
-
 // --- INITIALIZATION ---
-// Only initialize the timeline if we are on the process.html page.
+// Use DOMContentLoaded to ensure the elements exist before running page-specific setup.
 document.addEventListener('DOMContentLoaded', () => {
     // Check if the unique ID for the timeline exists, indicating we are on process.html
     if (document.getElementById('timeline-container')) {
