@@ -177,6 +177,7 @@ function initializeProcessTimeline() {
                 const pointRect = point.getBoundingClientRect();
                 if (pointRect.width === 0) return; 
 
+                // Calculate center of point relative to container left edge
                 const pointCenter = pointRect.left - containerRect.left + (pointRect.width / 2);
                 const distance = Math.abs(relativeX - pointCenter);
                 if (distance < minDistance) {
@@ -215,4 +216,40 @@ function initializeProcessTimeline() {
             }
         }, { passive: true });
 
-        window.
+        const endDrag = (e) => {
+            if (isDragging && timelineContainer) {
+                isDragging = false;
+                playhead.style.transition = 'left 0.2s ease-out';
+                const finalX = e.clientX || (e.changedTouches && e.changedTouches[0].clientX);
+                if(finalX) {
+                    snapPlayhead(finalX);
+                } else {
+                    // Snap to closest point even without a final clientX (e.g., if drag ended off-screen)
+                    const playheadRect = playhead.getBoundingClientRect();
+                    snapPlayhead(playheadRect.left + playheadRect.width/2);
+                }
+            }
+        };
+
+        window.addEventListener('mouseup', endDrag);
+        window.addEventListener('touchend', endDrag);
+        
+        // Point click listener
+        points.forEach(point => {
+            point.addEventListener('click', (e) => {
+                const index = parseInt(e.target.dataset.index);
+                const pointRect = e.target.getBoundingClientRect();
+                snapPlayhead(pointRect.left + pointRect.width/2);
+                updateDisplay(index);
+                scrollToCurrentStep();
+            });
+        });
+
+        // Initial setup
+        snapPlayhead(points[0].getBoundingClientRect().left + points[0].getBoundingClientRect().width / 2);
+        updateDisplay(0); 
+    }
+}
+
+// Ensure the function runs when the DOM is fully loaded
+window.addEventListener('DOMContentLoaded', initializeProcessTimeline);
