@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Process | ArsArcana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="text-slate-200 pt-16">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-sm border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-bold text-xl title-gradient">ArsArcana</a>
+                </div>
+
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="index.html" class="text-slate-300 hover:bg-slate-700 hover:text-white px-4 py-2 rounded-lg text-lg font-semibold">Home</a>
+                    </div>
+                    
+                    <div class="md:hidden">
+                        <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white focus:outline-none p-2">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+         <div id="mobile-menu" class="md:hidden hidden bg-slate-900/95">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-slate-300 hover:bg-slate-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#" class="text-white bg-slate-700 block px-3 py-2 rounded-md text-base font-medium">The Process</a>
+                <a href="perspective.html" class="text-slate-300 hover:bg-slate-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Perspective</a>
+                <a href="#" class="text-slate-500 opacity-60 pointer-events-none block px-3 py-2 rounded-md text-base font-medium">Other Categories (UNAVAILABLE)</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center pt-16 pb-12 px-4 sm:px-8 header-bg rounded-b-3xl mb-12">
+            <h1 class="text-7xl lg:text-8xl font-black title-gradient tracking-tighter mb-4">The Unified Theory of Digital Art</h1>
+            <p class="text-3xl lg:text-4xl text-slate-300 max-w-4xl mx-auto">A Systematic Approach to a Vague Craft</p>
+            <p class="text-lg text-slate-400 mt-8 max-w-3xl mx-auto font-semibold leading-relaxed">
+                Let's be honest. The journey to "get good" at art is often a frustrating crawl through a swamp of vague advice. You're told to "just practice" and "feel the form," but you're never given the actual schematic. The myth of "talent" is a convenient excuse for a lack of clear instruction.
+                <br><br>This document is the instruction. We've taken the machine apart and laid out the pieces. This is a logical, repeatable production pipeline for creating visually compelling work. It's not a suggestion; it's a system.
+                <br><br>The vague journey ends here. It's time to get to work.
+            </p>
+            <div class="mt-8 text-center">
+                <p class="text-2xl italic font-semibold text-slate-300 border-t border-b border-slate-700 py-4 max-w-md mx-auto">
+                    "A system isn't a cage, it's a key."
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6 text-center">
+                    <h3 class="font-bold text-xl title-gradient mb-3">A Note on This Workflow</h3>
+                    <p class="text-slate-400 text-sm">The pipeline outlined below is a powerful foundation for a wide range of popular digital art. It is a system built on common, efficient methods. This is not the only way to create art, but it is a proven path to achieving a polished, professional result.</p>
+                </div>
+                <div class="bg-slate-800/50 border border-red-500/30 rounded-lg p-6 text-center">
+                    <h3 class="font-bold text-xl text-red-400 mb-3">Important Distinction</h3>
+                    <p class="text-slate-400 text-sm">This guide details the **PROCESS** (the *what* and *when*), not the fundamental **THEORY** or **TECHNIQUE** (the *why* and *how*). It assumes a separate, ongoing study of form, perspective, light, and anatomy is being undertaken.</p>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-slate-700 inline-block">
+                <div class="flex flex-col sm:flex-row justify-center items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-10 text-left">
+                    <div class="flex items-center"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-green-400 mr-3 shadow-md shadow-green-400/20"></span><div><p class="font-bold text-green-400">Green Stipulations</p><p class="text-sm text-slate-400">Necessary actions for a complete typical work.</p></div></div>
+                    <div class="flex items-center"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-yellow-400 mr-3 shadow-md shadow-yellow-400/20"></span><div><p class="font-bold text-yellow-400">Yellow Stipulations</p><p class="text-sm text-slate-400">Advanced techniques for definition & realism.</p></div></div>
+                    <div class="flex items-center"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-red-400 mr-3 shadow-md shadow-red-400/20"></span><div><p class="font-bold text-red-400">Red Stipulations</p><p class="text-sm text-slate-400">Purely stylistic choices & philosophies.</p></div></div>
+                </div>
+            </div>
+        </header>
+        <section class="max-w-5xl mx-auto mb-20 px-4 sm:px-8">
+            <div id="timeline-numbers" class="w-full flex justify-between items-center text-xl font-bold mb-2 text-white"></div>
+            <div id="timeline-container" class="w-full">
+                <div id="timeline-bar"></div>
+                <div id="timeline-points-container" class="w-full flex justify-between items-center absolute"></div>
+                <div id="playhead"></div>
+            </div>
+            <div id="timeline-display" class="mt-8 text-center p-6 bg-slate-800/50 rounded-lg shadow-lg min-h-[120px] flex flex-col items-center justify-center">
+                 <div id="timeline-title-box" class="inline-block px-6 py-2 rounded-lg mb-3 transition-colors duration-300" onclick="scrollToCurrentStep()"><h3 id="timeline-title" class="text-3xl font-bold"></h3></div>
+                <p id="timeline-objective" class="text-lg text-slate-300"></p>
+            </div>
+        </section>
+        <main class="max-w-5xl mx-auto p-4 sm:p-0">
+            <section id="phase-1" class="mb-16">
+                <h2 class="text-4xl font-bold text-slate-200 border-b-2 phase-divider pb-3 mb-8">PHASE 1: CONSTRUCTION</h2>
+                <div class="space-y-6" id="phase-1-content"></div>
+            </section>
+            <section id="phase-2" class="mb-16">
+                <h2 class="text-4xl font-bold text-slate-200 border-b-2 phase-divider pb-3 mb-8">PHASE 2: COLOR & RENDER</h2>
+                <div class="space-y-6" id="phase-2-content"></div>
+            </section>
+            <section id="phase-3">
+                <h2 class="text-4xl font-bold text-slate-200 border-b-2 phase-divider pb-3 mb-8">PHASE 3: POLISH & FINALIZE</h2>
+                 <div class="space-y-6" id="phase-3-content"></div>
+            </section>
+        </main>
+    </div>
+    <footer class="text-center py-10 border-t border-slate-700 mt-20">
+        <p class="text-slate-500 text-sm">Created by Google Gemini & @TZARSZ</p>
+    </footer>
+
+    <div class="h-48"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
